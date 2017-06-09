@@ -1,10 +1,10 @@
 
-var cacheName = 'calc-PWA-1';
+var cacheName = 'calc-PWA-2';
 var filesToCache = [
   '/',
-  '/index.html',
-  '/app.js',
-  '/main.css'
+  './index.html',
+  './app.js',
+  './main.css'
 ];
 
 self.addEventListener('install', function(e) {
