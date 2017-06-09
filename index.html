@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calc</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <div class="row">
+            <div class="col">Badge Calculator</div>
+            <div class="col"></div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="card">
+            <div class="row result"></div>
+            <form onsubmit="return getAverage()" action="">
+            <div class="row">
+                <div class="col">Listening</div>
+                <div class="col"><select name="listening"></select></div>
+            </div>
+            <div class="row">
+                <div class="col">Reading</div>
+                <div class="col"><select name="reading"></select></div>
+            </div>
+            <div class="row">
+                <div class="col">Writing</div>
+                <div class="col"><select name="writing"></select></div>
+            </div>
+            <div class="row">
+                <div class="col">Speaking</div>
+                <div class="col"><select name="speaking"></select></div>
+            </div>
+            <div class="row">
+                <div class="col"><button type="submit" class="submitbutton">Get Average</button></div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
