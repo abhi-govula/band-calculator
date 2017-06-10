@@ -20,23 +20,51 @@ for(var i = 0; i < selects.length; i++) {
                 '<option value="9">9</option>';
     selects[i].innerHTML = html; 
 } 
+
+function nearestRound(num) {
+    var numArray = num.split('.'); 
+    if(numArray[1] > 5) {
+        num = Math.round(num);
+    } else if(numArray[1] < 5 && numArray[1] != 0) {
+        num = numArray[0] + ".5";
+    } 
+    return num; 
+} 
+function getTotal(obj) {
+    var items = Object.keys(obj); 
+    if((items.indexOf('readingt1') != -1) && items.indexOf('readingt2') != -1) {
+        var reading = (Number(obj.readingt1) + Number(obj.readingt2) + Number(obj.readingt2)) / 3; 
+        reading = reading.toFixed(1);         
+        reading = nearestRound(reading); 
+        delete obj.readingt1; 
+        delete obj.readingt2; 
+        obj.reading = reading;
+    } 
+    var values = Object.values(obj); 
+    var total = 0; 
+    for(var i = 0; i < values.length; i++) {
+        total = total + Number(values[i]); 
+    } 
+    return {number: values.length, total: total}; 
+}
 function getAverage() {
     event.preventDefault(); 
     var valuesNodes = document.querySelectorAll('select');
     var valObj = {}; 
-    var values = []; 
+    var values = {}; 
     var total = 0; 
     var average = 0; 
     for(var i = 0; i < valuesNodes.length; i++) {
         valObj[valuesNodes[i].name] = valuesNodes[i].value; 
         if(valuesNodes[i].value) {
-            values.push(valuesNodes[i].value); 
-            total = total + Number(valuesNodes[i].value); 
+            values[valuesNodes[i].name] = valuesNodes[i].value; 
         } 
     } 
-    if(values.length) {
-        average = total / values.length; 
+    if(Object.keys(values).length) { 
+        var getTotl = getTotal(values);
+        average = getTotl.total / getTotl.number; 
         average = average.toFixed(1); 
+        average = nearestRound(average); 
         var string = ""; 
         var color = ""; 
         if(average == 9) {
@@ -75,18 +103,14 @@ function getAverage() {
             string = "Non User"; 
             color = "#FF5722";
         } 
-        var averageArray = average.split('.'); 
-        if(averageArray[1] > 5) {
-            average = Math.round(average);
-        } else if(averageArray[1] < 5 && averageArray[1] != 0) {
-            average = averageArray[0] + ".5";
-        }
+        
         var html = '<div class="col">Average is</div><div class="col score">'+ average +'</div><div class="col">'+ string +'</div>'; 
         var node = document.querySelector('.result'); 
         node.innerHTML = html; 
         node.style.backgroundColor = color; 
-    } 
-} 
+    }
+}
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
              .register('./service-worker.js')

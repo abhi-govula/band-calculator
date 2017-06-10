@@ -1,5 +1,5 @@
 
-var cacheName = 'calc-PWA-2';
+var cacheName = 'calc-PWA-3';
 var filesToCache = [
   '/',
   './index.html',
