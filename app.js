@@ -32,13 +32,13 @@ function nearestRound(num) {
 } 
 function getTotal(obj) {
     var items = Object.keys(obj); 
-    if((items.indexOf('readingt1') != -1) && items.indexOf('readingt2') != -1) {
-        var reading = (Number(obj.readingt1) + Number(obj.readingt2) + Number(obj.readingt2)) / 3; 
-        reading = reading.toFixed(1);         
-        reading = nearestRound(reading); 
-        delete obj.readingt1; 
-        delete obj.readingt2; 
-        obj.reading = reading;
+    if((items.indexOf('writingt1') != -1) && items.indexOf('writingt2') != -1) {
+        var writing = (Number(obj.writingt1) + Number(obj.writingt2) + Number(obj.writingt2)) / 3; 
+        writing = writing.toFixed(1);         
+        writing = nearestRound(writing); 
+        delete obj.writingt1; 
+        delete obj.writingt2; 
+        obj.writing = writing;
     } 
     var values = Object.values(obj); 
     var total = 0; 
